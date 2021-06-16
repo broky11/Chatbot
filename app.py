@@ -4,7 +4,6 @@ import numpy as np
 import pickle
 import json
 from flask import Flask, render_template, request
-from flask_ngrok import run_with_ngrok
 import nltk
 from keras.models import load_model
 from nltk.stem import WordNetLemmatizer
@@ -18,7 +17,6 @@ words = pickle.load(open("words.pkl", "rb"))
 classes = pickle.load(open("classes.pkl", "rb"))
 
 app = Flask(__name__)
-run_with_ngrok(app) 
 
 @app.route("/")
 def home():
@@ -92,5 +90,5 @@ def getResponse(ints, intents_json):
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0',port=5000)
 
